@@ -1,10 +1,13 @@
 const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const distFolderPath = resolve(__dirname, 'dist');
 
 module.exports = {
   mode: 'development',
   entry: './src/index',
   output: {
-    path: resolve(__dirname, 'dist'),
+    path: distFolderPath,
   },
   module: {
     rules: [
@@ -18,4 +21,9 @@ module.exports = {
     ]
   },
   watch: true,
+  devServer: {
+    contentBase: distFolderPath,
+    port: 5000,
+  },
+  plugins: [new HtmlWebpackPlugin()],
 };
